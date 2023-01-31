@@ -27,3 +27,12 @@ def englishToFrench(englishText):
     jsonResultEnToFR = json.dumps(translation, indent=2, ensure_ascii=False)
     frenchText = translation['translations'][0]['translation']
     return frenchText
+
+def frenchToEnglish(frenchText):
+    translation = language_translator.translate(
+        text=frenchText,
+        source='fr',
+        target='en',).get_result()
+    jsonResultFrToEn = json.dumps(translation, indent=2, ensure_ascii=False)
+    englishText = translation['translations'][0]['translation']
+    return englishText
