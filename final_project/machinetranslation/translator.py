@@ -1,7 +1,7 @@
+import os
 import json
 from ibm_watson import LanguageTranslatorV3
 from ibm_cloud_sdk_core.authenticators import IAMAuthenticator
-import os
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -19,10 +19,13 @@ language_translator.set_service_url(url)
 
 
 
-def englishToFrench(englishText):
-    if englishText != '':
+def english_to_french(english_text):
+    """
+        Function to translate English to French
+    """
+    if english_text != '':
         request = language_translator.translate(
-                text=englishText,
+                text=english_text,
                 source='en',
                 target='fr',)
         response_status = request.get_status_code()
@@ -30,15 +33,18 @@ def englishToFrench(englishText):
             result = request.get_result()['translations'][0]['translation']
         else:
             result = "Error"
-        frenchText = result
+        french_text = result
     else:
-        frenchText = "Text is null"
-    return frenchText
+        french_text = "Text is null"
+    return french_text
 
-def frenchToEnglish(frenchText):
-    if frenchText != '':
+def french_to_english(french_text):
+    """
+        Function to translate French to English
+    """
+    if french_text != '':
         request = language_translator.translate(
-                text=frenchText,
+                text=french_text,
                 source='fr',
                 target='en',)
         response_status = request.get_status_code()
@@ -46,7 +52,7 @@ def frenchToEnglish(frenchText):
             result = request.get_result()['translations'][0]['translation']
         else:
             result = "Error"
-        englishText = result
+        english_text = result
     else:
-        englishText = "Text is null"
-    return englishText
+        english_text = "Text is null"
+    return english_text
