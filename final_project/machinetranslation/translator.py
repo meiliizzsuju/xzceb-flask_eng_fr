@@ -21,7 +21,9 @@ language_translator.set_service_url(url)
 def englishToFrench(englishText):
     translation = language_translator.translate(
         text=englishText,
-        model_id='en-es').get_result()
+        source='en',
+        target='fr',
+        ).get_result()
     jsonResultEnToFR = json.dumps(translation, indent=2, ensure_ascii=False)
     frenchText = translation['translations'][0]['translation']
     return frenchText
