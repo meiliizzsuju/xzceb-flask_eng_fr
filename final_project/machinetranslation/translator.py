@@ -18,21 +18,35 @@ language_translator = LanguageTranslatorV3(
 language_translator.set_service_url(url)
 
 
+
 def englishToFrench(englishText):
-    translation = language_translator.translate(
-        text=englishText,
-        source='en',
-        target='fr',
-        ).get_result()
-    jsonResultEnToFR = json.dumps(translation, indent=2, ensure_ascii=False)
-    frenchText = translation['translations'][0]['translation']
+    if englishText != '':
+        request = language_translator.translate(
+                text=englishText,
+                source='en',
+                target='fr',)
+        response_status = request.get_status_code()
+        if response_status == 200:
+            result = request.get_result()['translations'][0]['translation']
+        else:
+            result = "Error"
+        frenchText = result
+    else:
+        frenchText = "Text is null"
     return frenchText
 
 def frenchToEnglish(frenchText):
-    translation = language_translator.translate(
-        text=frenchText,
-        source='fr',
-        target='en',).get_result()
-    jsonResultFrToEn = json.dumps(translation, indent=2, ensure_ascii=False)
-    englishText = translation['translations'][0]['translation']
+    if frenchText != '':
+        request = language_translator.translate(
+                text=frenchText,
+                source='fr',
+                target='en',)
+        response_status = request.get_status_code()
+        if response_status == 200:
+            result = request.get_result()['translations'][0]['translation']
+        else:
+            result = "Error"
+        englishText = result
+    else:
+        englishText = "Text is null"
     return englishText
